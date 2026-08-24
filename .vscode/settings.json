@@ -3,5 +3,7 @@
   // To edit one: right-click its tab → "Reopen Editor With…" → Text Editor.
   "workbench.editorAssociations": {
     "*.md": "vscode.markdown.preview.editor"
-  }
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda"
 }
