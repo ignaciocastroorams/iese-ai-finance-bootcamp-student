@@ -25,8 +25,8 @@ IESE MiF · Prof. Sara Bisbe
 | **1 · Prompting** | grounded prompts | a model that refuses rather than guesses |
 | **2 · Coding copilot** | Apple valued against its peers | direct Claude Code; verify its work |
 | **3 · Debugging & analytics** | that valuation, repaired + an earnings engine | prove a number is right |
-| **4 · Workflows** | a screener on live SEC filings | code decides; the model explains |
-| **5 · Agents** | a governed agent + your capstone | the model plans, within your limits |
+| **4 · Workflows** | a company screening engine on live SEC filings | code decides; the model explains |
+| **5 · Agents** | a governed agent, published on GitHub + capstone | the model plans, within your limits |
 
 SEC = the U.S. Securities and Exchange Commission, whose public filing
 database supplies the course's data.
@@ -41,7 +41,8 @@ database supplies the course's data.
 | 10:30 | **2 · Claude Code** as coding copilot | **5 · Agents** + your capstone |
 | 12:00 | **3 · Debugging**, testing, analytics | |
 
-- **Capstone**: 5 minutes per person, Tuesday. Your workflow, running, on screen.
+- **Capstone**: submitted Tuesday — your repository URL plus a one-page memo
+  of your workflow.
 
 ---
 
@@ -53,6 +54,7 @@ database supplies the course's data.
 | Charts | `plotly` | best in class for interactive visuals |
 | Testing & validation | `pytest` · `pydantic` | the standard test runner; the standard validation library |
 | Claude | `anthropic` · **PydanticAI** | the official SDK; a state-of-the-art agent framework |
+| Workflows | **LangGraph** | the industry standard for AI pipelines, from the LangChain ecosystem |
 
 Each appears exactly when its job appears — nothing is used before it is explained.
 
@@ -139,12 +141,15 @@ Open VS Code → **Terminal → New Terminal**, and run:
 
 ```
 git clone https://github.com/comtessa-sareta/iese-ai-finance-bootcamp-student.git
+cd iese-ai-finance-bootcamp-student
 ```
 
 Then: **File → Open Folder** → choose `iese-ai-finance-bootcamp-student`,
 open **`setup/SETUP.md`**, and follow it top to bottom — it contains every
 remaining command, in order.
 
+- **Both lines matter**: `clone` downloads the folder, `cd` moves you *into*
+  it. Every later command runs from inside — `ls` should show `requirements.txt`
 - The link is also in the **Zoom chat**: click it there instead of typing
 - `git` not found? `SETUP.md` step 0b covers installing it
 

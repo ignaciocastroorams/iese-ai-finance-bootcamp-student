@@ -7,8 +7,10 @@ Run this when the instructor announces an update:
 What it does, in order:
 1. Copies every notebook you have modified into backups/<date-time>/ —
    your filled-in answers are preserved there, always.
-2. Restores those notebooks to their original state.
+2. Restores every course file to its original state (only your notebooks
+   ever hold your work, and those were just backed up).
 3. Pulls the update.
+4. Installs any packages the update added to requirements.txt.
 
 Your work is never deleted: after updating, open the backup copy next to the
 new notebook and copy your answers across. Nothing is ever pushed anywhere.
@@ -44,11 +46,23 @@ def main() -> None:
             src = REPO / rel
             shutil.copy2(src, backup_dir / Path(rel).name)
         print(f"Backed up {len(modified)} notebook(s) with your work to: backups/{stamp}/")
-        run("checkout", "--", *modified)
     else:
         print("No modified notebooks - nothing to back up.")
 
+    # Reset every tracked file so the pull can never conflict. Your own work
+    # lives only in notebooks (backed up above) and in untracked files
+    # (.env, outputs/, backups/), which this never touches. A PDF merely
+    # opened in a viewer counts as "modified" and used to block the pull.
+    run("checkout", "--", ".")
+
     print(run("pull", "--ff-only").strip() or "Already up to date.")
+
+    # New sessions can add packages; installing is fast when nothing changed.
+    print()
+    print("Updating packages from requirements.txt ...")
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-r",
+                    str(REPO / "requirements.txt")], check=False)
+
     print()
     print("Done. Your own answers are safe in the backups/ folder;")
     print("open the backup next to the updated notebook to copy them across.")
